@@ -1,10 +1,13 @@
-import { supabase } from './supabase';
+// Navbar.jsx
+
 import './Navbar.css';
 
+// ⭐ 1. Load Supabase here
+
 export default function Navbar() {
+
+  // ⭐ 2. Logout function here
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    window.location.reload(); // or use routing to redirect to login
   };
 
   return (

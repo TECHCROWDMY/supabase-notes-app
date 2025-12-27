@@ -1,46 +1,51 @@
+// Notes.jsx
+
 import { useEffect, useState } from 'react';
-import { supabase } from './supabase';
-import './Notes.css';
 import Navbar from './Navbar';
+import './Notes.css';
+
+// ⭐ 1. Load Supabase here
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
 
+  // ⭐ 2. Fetch Notes here
   const fetchNotes = async () => {
-    const { data } = await supabase
-      .from('notes')
-      .select('*')
-      .order('inserted_at', { ascending: false });
-    setNotes(data);
+
+    //  ⭐ 2a. Make Fetch Request here
+
+
+    //  ⭐ 2b. Initialise notes into set function
+
   };
 
+  // ⭐ 3. Create Notes here
   const addNote = async () => {
-    const user = (await supabase.auth.getUser()).data.user;
+    
+    //  ⭐ Fetch User here
 
-    const { error } = await supabase.from('notes').insert({
-      title: 'New Note',
-      content: newNote,
-      user_id: user.id,
-    });
+    
+     //  ⭐ 3a. Make Post Request here
 
-    if (error) return console.error(error);
 
-    setNewNote('');
-    await fetchNotes();
+    // if (error) return console.error(error);
+
+    //  ⭐ 3b. Reset state
+
+    //  ⭐ 3c. Initialise notes into set function
   };
 
   useEffect(() => {
+    // ⭐ 1. Fetch All Notes here
     fetchNotes();
 
-    const subscription = supabase
-      .channel('public:notes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'notes' }, fetchNotes)
-      .subscribe();
+    // ⭐ 
 
-    return () => {
-      supabase.removeChannel(subscription);
-    };
+
+    // ⭐ 
+
+    
   }, []);
 
   return (

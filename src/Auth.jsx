@@ -1,19 +1,13 @@
-import { supabase } from './supabase';
+// Auth.jsx
+
 import './Auth.css';
 
+// ⭐ 1. Load Supabase here
+
 export default function Auth() {
+  
+  // ⭐ 2. Login with Google
   const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: import.meta.env.PROD
-          ? 'https://react-supabase-notes-app.netlify.app'
-          : 'http://localhost:5173/', // ✅ Make sure this is 5173
-      },
-    });
-
-
-    if (error) alert(error.message);
   };
 
   return (

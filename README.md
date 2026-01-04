@@ -1,8 +1,24 @@
 # ⚡ React + Vite + Supabase Starter Template
 
-A production-ready starter template built with **React** and **Vite**, designed to help you **get started quickly with Supabase**.
+A starter template built with **React** and **Vite**, designed to help you **get started quickly with Supabase**.
 
 This template includes **authentication** and a **simple CRUD notes system**, so you can focus on building features instead of wiring up the basics.
+
+---
+
+## 🧑‍💻 Getting Started
+```bash
+npm install
+```
+
+---
+
+## 🏃 Run the App
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
@@ -30,27 +46,6 @@ This project is meant to serve as a **starting point** for applications that nee
   - Read notes (user-specific)
   - Update notes
   - Delete notes
-
-- ⚡ **Developer Experience**
-  - Hot Module Replacement (HMR)
-  - Minimal boilerplate
-  - Clean folder structure
-
----
-
-## 🧑‍💻 Getting Started
-```bash
-npm install
-```
-
----
-
-## 🏃 Run the App
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 

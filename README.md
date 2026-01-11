@@ -36,7 +36,7 @@ This project is meant to serve as a **starting point** for applications that nee
 ### 1. Load Supabase
 ```javascript
 // ⭐ 1. Load Supabase here
-// import { supabase } from './supabase';
+import { supabase } from './supabase';
 ```
 
 ### 2. Load Supabase Auth Session

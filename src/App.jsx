@@ -11,7 +11,7 @@ function App() {
   // Sessions should be null by default;
   const [session, setSession] = useState(false);
 
-  // ⭐ 2. Load Supabase Session here
+  // ⭐ 2. Load Supabase Auth Session here
 
 
   return session ? <Notes /> : <Auth />;

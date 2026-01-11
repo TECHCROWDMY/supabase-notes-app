@@ -7,8 +7,7 @@ import './Auth.css';
 export default function Auth() {
   
   // ⭐ 2. Login with Google
-  const handleGoogleLogin = async () => {
-  };
+  const handleGoogleLogin = async () => {};
 
   return (
     <div className="auth-wrapper">

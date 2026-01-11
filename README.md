@@ -61,7 +61,7 @@ const handleGoogleLogin = async () => {
     provider: 'google',
     options: {
       redirectTo: import.meta.env.PROD
-        ? 'https://react-supabase-notes-app.netlify.app'
+        ? 'YOUR_DEPLOYED_WEBSITE_URL'
         : 'http://localhost:5173/',
     },
   });

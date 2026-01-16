@@ -70,5 +70,126 @@ const handleGoogleLogin = async () => {
 };
 ```
 
+### 4. Logout
+```javascript
+// ⭐ 4. Logout
+const handleLogout = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.error('Logout error:', error.message);
+  }
+};
+```
+
+### 5. Fetch Notes
+```javascript
+// ⭐ 5. Fetch Notes
+const fetchNotes = async () => {
+  const { data, error } = await supabase
+    .from('Notes')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error(error.message);
+    return;
+  }
+
+  setNotes(data);
+};
+
+// Call fetchNotes on component mount
+useEffect(() => {
+  fetchNotes();
+}, []);
+```
+
+### 6. Create Note
+```javascript
+// ⭐ 6. Create Note
+const addNote = async () => {
+  if (!newNote.trim()) return;
+
+  const { data, error } = await supabase
+    .from('Notes')
+    .insert([
+      {
+        content: newNote.trim()
+      }
+    ])
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Insert error:', error.message);
+    return;
+  }
+
+  setNewNote('');
+  setNotes((prev) => [data, ...prev]);
+};
+```
+
+### 7. Update Note
+```javascript
+// ⭐ 7. Update Note
+const updateNote = async (id) => {
+  if (!editingContent.trim()) return;
+
+  const { error } = await supabase
+    .from('Notes')
+    .update({ content: editingContent })
+    .eq('id', id);
+
+  if (error) {
+    console.error(error.message);
+    return;
+  }
+
+  setEditingId(null);
+  setEditingContent('');
+  fetchNotes();
+};
+```
+
+### 8. Delete Note
+```javascript
+// ⭐ 8. Delete Note
+const deleteNote = async (id) => {
+  const { error } = await supabase
+    .from('Notes')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error(error.message);
+    return;
+  }
+
+  fetchNotes();
+};
+```
+
+### 9. Real-time Subscription (Bonus)
+```javascript
+// ⭐ 9. Real-time Subscription for Notes
+useEffect(() => {
+  fetchNotes();
+
+  const subscription = supabase
+    .channel('public:notes')
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'Notes' },
+      fetchNotes
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(subscription);
+  };
+}, []);
+```
+
 ---
 **Built with ❤️ using React, Vite, and Supabase**

@@ -3,11 +3,21 @@
 import './Auth.css';
 
 // ⭐ 1. Load Supabase here
+import { supabase } from './supabase';
 
 export default function Auth() {
   
-  // ⭐ 2. Login with Google
-  const handleGoogleLogin = async () => {};
+  // ⭐ 3. Login with Google
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: import.meta.env.VITE_REDIRECT_URL
+      },
+    });
+    
+    if (error) alert(error.message);
+  };
 
   return (
     <div className="auth-wrapper">
